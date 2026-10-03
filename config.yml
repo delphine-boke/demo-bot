@@ -1,0 +1,28 @@
+recipe: default.v1
+assistant_id: african_lang_nlu
+language: en
+
+pipeline:
+  - name: WhitespaceTokenizer
+
+  - name: CountVectorsFeaturizer
+    analyzer: char_wb
+    min_ngram: 1
+    max_ngram: 4
+
+  - name: DIETClassifier
+    epochs: 50
+    constrain_similarities: true
+    entity_recognition: true
+    model_confidence: softmax
+    batch_size: 16
+    learning_rate: 0.001
+
+  - name: EntitySynonymMapper
+  
+  - name: FallbackClassifier
+    threshold: 0.7
+    ambiguity_threshold: 0.1
+
+policies:
+  - name: RulePolicy

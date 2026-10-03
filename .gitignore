@@ -1,0 +1,22 @@
+# Virtual environments
+.venv/
+
+# Rasa cache
+.rasa/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Trained models (rebuild with rasa train)
+models/
+
+# Misc
+stuff.txt
+data/nlu.yml
+
+# Python / OS
+__pycache__/
+*.py[cod]
+.DS_Store

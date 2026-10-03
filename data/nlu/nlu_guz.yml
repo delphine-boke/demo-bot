@@ -1,0 +1,48 @@
+version: "3.1"
+
+# Ekegusii (guz). Greetings are from published phrase lists.
+# Domain lines marked DRAFT are glosses for the intent skeleton.
+
+nlu:
+  - intent: greet
+    examples: |
+      - naki
+      - naki ore
+      - naki ore rero
+      - bwakire
+      - bwairire
+      - bwairire buya
+
+  - intent: goodbye
+    examples: |
+      - tororane
+      - tororane kare
+
+  - intent: bot_challenge
+    examples: |
+      - aye ni bot
+      - aye no bot
+      - ninkwana na bot
+
+  - intent: ask_office_hours
+    examples: |
+      - DRAFT ofisi efungoire ri
+      - DRAFT chinsa chi ofisi
+
+  - intent: check_application_status
+    examples: |
+      - DRAFT ng'eni hali y'application [EDU-2041](application_id)
+      - DRAFT status ya bursary yane
+
+  - intent: ask_bursary
+    examples: |
+      - DRAFT ntagete bursary
+      - DRAFT fomu ya bursary ere kae
+
+  - intent: switch_language
+    examples: |
+      - DRAFT ongoa ekegusii
+      - DRAFT chenchia omonwa gochia kiswahili
+      - kwana [Ekegusii]{"entity": "target_language", "value": "guz"}
+      - onchorie gochia [Ekegusii]{"entity": "target_language", "value": "guz"}
+      - twende [Kiswahili]{"entity": "target_language", "value": "sw"}

@@ -1,0 +1,149 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - bot_challenge
+  - ask_office_hours
+  - ask_bursary
+  - check_application_status
+  - switch_language
+
+entities:
+  - document_type
+  - service_name
+  - reference_id
+  - target_language
+  - application_id
+
+slots:
+  language:
+    type: categorical
+    values:
+      - en
+      - sw
+      - guz
+    initial_value: en
+    mappings:
+      - type: from_entity
+        entity: target_language
+
+actions:
+  - action_llm_fallback
+  
+entity_synonyms:
+  - synonym: birth_certificate
+    examples: |
+      birth certificate
+      birth cert
+      cheti cha kuzaliwa
+      cheti kuzaliwa
+      ekerengo ki'obibarwa
+  - synonym: school_leaving
+    examples: |
+      school leaving certificate
+      leaving certificate
+      cheti cha kumaliza shule
+      cheti shule
+  - synonym: national_id
+    examples: |
+      national id
+      national identity card
+      kitambulisho
+      kitambulisho cha taifa
+
+responses:
+  utter_greet:
+    - text: "Hello. I can help with documents, fees, and application status."
+    - condition:
+        - type: slot
+          name: language
+          value: sw
+      text: "Habari. Naweza kusaidia na vyeti, ada, na hali ya maombi."
+    - condition:
+        - type: slot
+          name: language
+          value: guz
+      text: "Bwairire. Ninkogokonya ase ebinto bi'ofisi."
+
+  utter_office_hours:
+    - text: "The office is open weekdays 08:00-16:00. Saturday is closed."
+    - condition:
+        - type: slot
+          name: language
+          value: sw
+      text: "Ofisi iko wazi siku za kazi saa mbili asubuhi hadi saa kumi jioni. Jumamosi imefungwa."
+    - condition:
+        - type: slot
+          name: language
+          value: guz
+      text: "Ofisi negoigora chinsa chi'omogaso. Jumamosi teigora."
+
+  utter_bursary:
+    - text: "Bursary forms are at the registry. The deadline is posted on the notice board."
+    - condition:
+        - type: slot
+          name: language
+          value: sw
+      text: "Fomu ya bursary iko kwenye ofisi. Tarehe ya mwisho iko kwenye bango."
+    - condition:
+        - type: slot
+          name: language
+          value: guz
+      text: "Fomu ya bursary ere ase ofisi."
+
+  utter_application_status:
+    - text: "Give me the reference, for example EDU-2041, and I will look up the status."
+    - condition:
+        - type: slot
+          name: language
+          value: sw
+      text: "Nipe nambari, kwa mfano EDU-2041, nikaangalie hali ya maombi."
+    - condition:
+        - type: slot
+          name: language
+          value: guz
+      text: "Mp'e namba, ero EDU-2041, nkore hali."
+
+  utter_goodbye:
+    - text: "Goodbye."
+    - condition:
+        - type: slot
+          name: language
+          value: sw
+      text: "Kwaheri."
+    - condition:
+        - type: slot
+          name: language
+          value: guz
+      text: "Mbuya mono."
+
+  utter_iamabot:
+    - text: "I am a bot. I can help with registry services. I am not an officer."
+    - condition:
+        - type: slot
+          name: language
+          value: sw
+      text: "Mimi ni bot. Naweza kusaidia na huduma za ofisi. Mimi si afisa."
+    - condition:
+        - type: slot
+          name: language
+          value: guz
+      text: "Inche ni bot. Tinyi ofisa."
+
+  utter_language_switched:
+    - text: "Continuing in English."
+    - condition:
+        - type: slot
+          name: language
+          value: sw
+      text: "Tunaendelea kwa Kiswahili."
+    - condition:
+        - type: slot
+          name: language
+          value: guz
+      text: "Tokogamba Ekegusii."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

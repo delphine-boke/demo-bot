@@ -1,0 +1,41 @@
+version: "3.1"
+
+rules:
+  - rule: greet back
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: say goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: bot challenge
+    steps:
+      - intent: bot_challenge
+      - action: utter_iamabot
+
+  - rule: switch language
+    steps:
+      - intent: switch_language
+      - action: utter_language_switched
+
+  - rule: office hours
+    steps:
+    - intent: ask_office_hours
+    - action: utter_office_hours
+  - rule: bursary
+    steps:
+    - intent: ask_bursary
+    - action: utter_bursary
+
+  - rule: application status
+    steps:
+    - intent: check_application_status
+    - action: utter_application_status
+
+  - rule: llm fallback
+    steps:
+      - intent: nlu_fallback
+      - action: action_llm_fallback

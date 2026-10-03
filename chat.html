@@ -1,0 +1,41 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Demo bot</title>
+<style>
+  body { font: 16px/1.4 ui-sans-serif, system-ui; margin: 2rem auto; max-width: 40rem; }
+  form { display: flex; gap: .5rem; }
+  input { flex: 1; padding: .5rem; }
+  #log { white-space: pre-wrap; background: #f4f4f4; padding: 1rem; min-height: 12rem; }
+</style>
+<h1>Demo bot (pure html, no fancy ui)</h1>
+<form id="f">
+  <input id="q" autofocus placeholder="mambo / how are you? / ongea Kiswahili">
+  <button>Send</button>
+</form>
+<div id="log"></div>
+<script>
+  const log = document.querySelector("#log");
+  const input = document.querySelector("#q");
+  const sender = "pyconke";
+
+  function add(line) {
+    log.textContent += (log.textContent ? "\n" : "") + line;
+  }
+
+  document.querySelector("#f").onsubmit = async (ev) => {
+    ev.preventDefault();
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = "";
+    input.focus();
+    add("you: " + text);
+    const res = await fetch("http://127.0.0.1:5005/webhooks/rest/webhook", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({sender, message: text})
+    });
+    const data = await res.json();
+    if (!data.length) add("bot: (no utterance)");
+    for (const m of data) add("bot: " + (m.text || JSON.stringify(m)));
+  };
+</script>

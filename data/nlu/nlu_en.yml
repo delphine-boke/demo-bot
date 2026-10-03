@@ -1,0 +1,61 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - hi
+      - hello
+      - hey
+      - good morning
+      - good afternoon
+      - good evening
+      - how are you
+      - how are you?
+      - how's it going
+
+  - intent: goodbye
+    examples: |
+      - bye
+      - goodbye
+      - see you later
+      - that's all thanks
+  
+  - intent: bot_challenge
+    examples: |
+      - are you a bot
+      - are you a human
+      - am I talking to a robot
+      - is this a real person
+      - who am I talking to
+
+  - intent: ask_office_hours
+    examples: |
+      - what time does the office open
+      - office hours please
+      - when are you open
+      - what time do you close
+
+  - intent: check_application_status
+    examples: |
+      - check my application status
+      - what is the status of application [EDU-2041](application_id)
+      - has my bursary application been approved
+      - status for [EDU-1188](application_id)
+
+  - intent: ask_bursary
+    examples: |
+      - how do I apply for a bursary
+      - school fees support
+      - where do I get the bursary form
+      - bursary deadline this term
+
+  - intent: switch_language
+    examples: |
+      - speak swahili
+      - switch to ekegusii
+      - change language to english
+      - I want kiswahili
+      - speak [English]{"entity": "target_language", "value": "en"}
+      - switch to [English]{"entity": "target_language", "value": "en"}
+      - continue in [Swahili]{"entity": "target_language", "value": "sw"}
+      - change language to [Ekegusii]{"entity": "target_language", "value": "guz"}

@@ -1,0 +1,58 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - habari
+      - habari yako
+      - habari za asubuhi
+      - mambo
+      - shikamoo
+      - hujambo
+
+  - intent: goodbye
+    examples: |
+      - kwaheri
+      - tutaonana
+      - asante tu
+      - inatosha
+
+  - intent: bot_challenge
+    examples: |
+      - wewe ni bot
+      - wewe ni programu
+      - nazungumza na bot
+      - wewe ni mtu
+      - nani nazungumza naye
+
+  - intent: ask_office_hours
+    examples: |
+      - ofisi inafunguliwa saa ngapi
+      - muda wa kufungua ofisi
+      - mnafanya kazi hadi saa ngapi
+      - saa za ofisi tafadhali
+
+  - intent: check_application_status
+    examples: |
+      - nataka kujua hali ya maombi yangu
+      - hali ya maombi [EDU-2041](application_id)
+      - je bursary yangu imepitishwa
+      - angalia status ya [EDU-1188](application_id)
+
+  - intent: ask_bursary
+    examples: |
+      - ninaombaje bursary
+      - msaada wa ada ya shule
+      - fomu ya bursary iko wapi
+      - tarehe ya mwisho ya bursary ni lini
+
+  - intent: switch_language
+    examples: |
+      - badilisha lugha
+      - nataka kiingereza
+      - ongea ekegusii
+      - tumia kiswahili
+      - ongea [Kiswahili]{"entity": "target_language", "value": "sw"}
+      - badilisha lugha iwe [Kiswahili]{"entity": "target_language", "value": "sw"}
+      - twende [Kiingereza]{"entity": "target_language", "value": "en"}
+      - naomba [Ekegusii]{"entity": "target_language", "value": "guz"}
